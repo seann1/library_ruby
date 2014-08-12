@@ -2,7 +2,7 @@ require 'pg'
 require 'rspec'
 require './lib/authors'
 require './lib/checkouts'
-require './lib/copies'
+require './lib/catalog'
 require './lib/patrons'
 require './lib/books'
 DB = PG.connect(:dbname => 'library_test')
@@ -13,6 +13,6 @@ RSpec.configure do |config|
     # DB.exec("DELETE FROM checkouts *;")
     DB.exec("DELETE FROM books *;")
     DB.exec("DELETE FROM patrons *;")
-    # DB.exec("DELETE FROM copies *;")
+    DB.exec("DELETE FROM catalog *;")
   end
 end

@@ -50,4 +50,20 @@ describe 'Author' do
       expect(Author.find("mark twain")).to eq test_author1
     end
   end
+
+  describe 'books' do
+    it 'returns all books associated with the author' do
+      test_author1 = Author.new({:name => "mark twain"})
+      test_book1 = Book.new({:name => "The Hobbit"})
+      test_book2 = Book.new({:name => "The Jungle Book"})
+      test_author1.save
+      test_book1.save
+      test_book2.save
+      new_catalog = Catalog.new({:book_id => test_book1.id, :author_id => test_author1.id})
+      new_catalog.save
+      new_catalog2 = Catalog.new({:book_id => test_book2.id, :author_id => test_author1.id})
+      new_catalog2.save
+      expect(test_author1.books).to eq [test_book1, test_book2]
+    end
+  end
 end

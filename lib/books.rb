@@ -32,4 +32,8 @@ class Book
     end
     @result
   end
+
+  def authors
+    # should return all the author associated with this book
+  end
 end

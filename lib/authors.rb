@@ -1,3 +1,4 @@
+require 'pry'
 class Author
   attr_accessor :name, :id
 
@@ -33,6 +34,18 @@ class Author
     @result
   end
 
+  def books
+    names_array = []
+    author_name = DB.exec("SELECT * FROM authors WHERE name = '#{self.name}';")
+    results = DB.exec("SELECT * FROM
+              authors JOIN catalog ON (authors.id = catalog.author_id)
+              JOIN books ON (catalog.book_id = books.id)
+              WHERE authors.id = '#{self.id}';")
+    results.each do |result|
+      names_array << Book.new({:name => result['name'], :id => result['book_id']})
+    end
+    names_array
+  end
 end
 
 
