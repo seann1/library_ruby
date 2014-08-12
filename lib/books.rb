@@ -23,4 +23,13 @@ class Book
   def ==(another_book)
     self.name == another_book.name
   end
+
+  def self.find(name)
+    Book.all.each do |book|
+      if book.name == name
+        @result = book
+      end
+    end
+    @result
+  end
 end

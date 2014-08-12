@@ -40,4 +40,14 @@ describe 'Book' do
       expect(test_book1).to eq test_book2
     end
   end
+
+  describe "self.find" do
+    it 'finds the book in the database specified by the user' do
+      test_book1 = Book.new({:name => "The Hobbit"})
+      test_book2 = Book.new({:name => "The Jungle Book"})
+      test_book1.save
+      test_book2.save
+      expect(Book.find("The Hobbit")).to eq test_book1
+    end
+  end
 end

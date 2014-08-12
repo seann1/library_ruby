@@ -24,6 +24,15 @@ class Author
     self.name == another_author.name
   end
 
+  def self.find(name)
+    Author.all.each do |author|
+      if author.name == name
+        @result = author
+      end
+    end
+    @result
+  end
+
 end
 
 

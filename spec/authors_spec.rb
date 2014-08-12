@@ -40,4 +40,14 @@ describe 'Author' do
       expect(test_author1).to eq test_author2
     end
   end
+
+  describe 'self.find' do
+    it 'finds the author in the database specified by the user' do
+      test_author1 = Author.new({:name => "mark twain"})
+      test_author2 = Author.new({:name => "herman melville"})
+      test_author1.save
+      test_author2.save
+      expect(Author.find("mark twain")).to eq test_author1
+    end
+  end
 end
