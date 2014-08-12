@@ -20,4 +20,24 @@ describe 'Book' do
       expect(Book.all.length).to eq 1
     end
   end
+
+  describe '.all' do
+    it 'goes through all the books in the database' do
+      test_book1 = Book.new({:name => "The Hobbit"})
+      test_book2 = Book.new({:name => "The Jungle Book"})
+      test_book1.save
+      test_book2.save
+      expect(Book.all).to eq [test_book1, test_book2]
+    end
+  end
+
+  describe '.==' do
+    it 'is the same book if it has the same name' do
+      test_book1 = Book.new({:name => "The Hobbit"})
+      test_book2 = Book.new({:name => "The Hobbit"})
+      test_book1.save
+      test_book2.save
+      expect(test_book1).to eq test_book2
+    end
+  end
 end

@@ -15,8 +15,12 @@ class Book
     books = []
     results = DB.exec("SELECT * FROM books;")
     results.each do |result|
-      books << Book.new({:name => result['name'], :id => result['name']})
+      books << Book.new({:name => result['name'], :id => result['id'].to_i})
     end
     books
+  end
+
+  def ==(another_book)
+    self.name == another_book.name
   end
 end
